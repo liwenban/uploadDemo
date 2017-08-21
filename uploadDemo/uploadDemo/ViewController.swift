@@ -130,6 +130,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
                     //解包
                     guard let result = response.result.value else { return }
                     print("\(result)")
+                    //须导入 swiftyJSON 第三方框架，否则报错
                     let success = JSON(result)["success"].int ?? -1
                     if success == 1 {
                         print("上传成功")
@@ -171,6 +172,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
                     //解包
                     guard let result = response.result.value else { return }
                     print("\(result)")
+                    //须导入 swiftyJSON 第三方框架，否则报错
                     let success = JSON(result)["success"].int ?? -1
                     if success == 1 {
                         print("上传成功")
@@ -233,7 +235,9 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
                     break;
                 case .completed:
                     print("转码成功")
+                    //转码成功后获取视频视频地址
                     let mp4Path = URL.init(fileURLWithPath: outputPath)
+                    //上传
                     self.uploadVideo(mp4Path: mp4Path)
                     break;
                 default:
